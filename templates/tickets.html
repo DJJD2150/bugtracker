@@ -1,0 +1,12 @@
+{% if not tickets %}
+    <h1>The ticket you're looking for isn't here.</h1>
+{% else %}
+    <h2>{{ tickets.title }}</h2>
+    <p>{{ tickets.time_and_date_filed }}</p>
+    <p>{{ ticket.ticket_status }}</p>
+    <p><a href="/username/{{ tickets.username.id }}">{{ tickets.username.username }}</a></p>
+    <p>{{ tickets.description }}</p>
+    <p>{{ tickets.user_filed_ticket }}</p>
+    <p>{{ tickets.user_assigned_ticket }}</p>
+    <p>{{ tickets.user_completed_ticket }}</p>
+{% endif %}

@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from bugtracker_app.models import CustomUserModel, Ticket
 
 # Create your forms here.
-class AddLoginForm(forms.Form):
+class LoginForm(forms.Form):
     username = forms.CharField(max_length=40)
     password = forms.CharField(widget=forms.PasswordInput)
 
@@ -12,4 +12,9 @@ class TicketForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
 
 class UserForm(forms.Form):
-    pass
+    username = forms.CharField(max_length=40)
+    password = forms.CharField(widget=forms.PasswordInput)
+    
+    class Meta():
+        model = CustomUserModel
+        fields = ['bio']

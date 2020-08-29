@@ -1,0 +1,13 @@
+{% if not users %}
+    <h1>The user you're looking for isn't here.</h1>
+{% else %}
+    <h1>{{ usernames.username }}</h1>
+    <p>{{ usernames.bio }}</p>
+    <ul>
+    {% for ticket in tickets %}
+        <li>
+            <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}

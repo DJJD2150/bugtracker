@@ -9,7 +9,8 @@ class CustomUserModel(AbstractUser):
         return self.username
 
 class Ticket(models.Model):
-    # Got help from Sohail Aslam in study hall here.
+    # Got help from Sohail Aslam in study hall here, as well as the Django documentation.
+    # https://docs.djangoproject.com/en/3.0/ref/models/fields/#choices
     TICKET_CHOICES = [
         ('New', 'New'),
         ('In Progress', 'In Progress'),

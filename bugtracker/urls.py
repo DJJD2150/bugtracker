@@ -24,7 +24,7 @@ urlpatterns = [
     path('newticket/', views.create_ticket_view, name="create_ticket_view"),
     path('username/<int:user_id>/edit/', views.user_edit_view),
     path('username/<int:user_id>', views.user_view, name="user_view"),
-    path('newuser/', views.create_user_view, name="create_user_view"),
+    # path('newuser/', views.create_user_view, name="create_user_view"),
     path('login/', views.login_view, name="login"),
     path('logout/', views.logout_view, name="logout"),
     path('admin/', admin.site.urls),
