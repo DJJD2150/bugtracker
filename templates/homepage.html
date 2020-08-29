@@ -1,0 +1,22 @@
+<h1>Bugtracker</h1>
+{% if request.user.is_authenticated %}
+    <h2>Welcome to Bugtracker, {{ request.user.username }}!</h2>
+    <p>
+        <a href="/logout/"><button>Logout</button></a>
+    </p>
+    <ul>
+    {% for ticket in index %}
+        <li>
+            <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+    {{ tickets }}
+    <a href="/newticket/">Create New Ticket</a>
+    <a href="/newuser/">Create New User</a>
+{% else %}
+    <h2>You are not logged on.</h2>
+    <p>
+        <a href="/login/"><button>Login</button></a>
+    </p>
+{% endif %}
