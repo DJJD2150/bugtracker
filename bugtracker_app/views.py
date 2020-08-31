@@ -4,12 +4,24 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
 from bugtracker_app.models import CustomUserModel, Ticket
-from bugtracker_app.forms import LoginForm, TicketForm, UserForm
+from bugtracker_app.forms import LoginForm, TicketForm
 
 # Create your views here.
 def index_view(request):
     initial_index = Ticket.objects.all()
-    return render(request, "homepage.html", {'index': initial_index})
+    new_tickets = Ticket.objects.filter(ticket_status='New')
+    in_progress_tickets = Ticket.objects.filter(ticket_status='In Progress')
+    completed_tickets = Ticket.objects.filter(ticket_status='Done')
+    invalid_tickets = Ticket.objects.filter(ticket_status='Invalid')
+    return render(
+        request, 
+        "homepage.html", 
+        {'index': initial_index,
+        'new_tickets': new_tickets,
+        'in_progress_tickets': in_progress_tickets,
+        'completed_tickets': completed_tickets,
+        'invalid_tickets': invalid_tickets}
+    )
 
 def login_view(request):
     if request.method == "POST":
@@ -96,26 +108,28 @@ def ticket_edit_view(request, ticket_id):
 
 @login_required
 def user_view(request, user_id):
-    if request.method == "POST":
-        form = UserForm(request.POST)
-        form.save()
-        return HttpResponseRedirect(reverse("homepage"))
-
-    form = UserForm()
+    # if request.method == "POST":
+    #     form = UserForm(request.POST)
+    #     form.save()
+    #     return HttpResponseRedirect(reverse("homepage"))
     all_users = CustomUserModel.objects.filter(id=user_id).first()
-    all_users_tickets = Ticket.objects.filter(author=all_users)
+    all_users_filed_tickets = Ticket.objects.filter(user_filed_ticket=all_users)
+    all_users_assigned_tickets = Ticket.objects.filter(user_assigned_ticket=all_users)
+    all_users_completed_tickets = Ticket.objects.filter(user_completed_ticket=all_users)
     return render(request, "usernames.html", {"usernames": all_users,
-                                            "tickets": all_users_tickets,
+                                            "filedtickets": all_users_filed_tickets,
+                                            "assignedtickets": all_users_assigned_tickets,
+                                            "completedtickets": all_users_completed_tickets,
                                             "post": all_users})
 
-"""localhost:8000/username/3/edit"""
-@login_required
-def user_edit_view(request, user_id):
-    username = CustomUserModel.objects.get(id=user_id)
-    if request.method == "POST":
-        form = UserForm(request.POST, instance=username)
-        form.save()
-        return HttpResponseRedirect(reverse("homepage"))
+# """localhost:8000/username/3/edit"""
+# # @login_required
+# # def user_edit_view(request, user_id):
+# #     username = CustomUserModel.objects.get(id=user_id)
+# #     if request.method == "POST":
+# #         form = UserForm(request.POST, instance=username)
+# #         form.save()
+# #         return HttpResponseRedirect(reverse("homepage"))
 
-    form = UserForm(instance=username)
-    return render(request, "generic_form.html", {"form": form})
+# #     form = UserForm(instance=username)
+# #     return render(request, "generic_form.html", {"form": form})

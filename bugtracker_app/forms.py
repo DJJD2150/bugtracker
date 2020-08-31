@@ -11,10 +11,10 @@ class TicketForm(forms.Form):
     title = forms.CharField(max_length=80)
     description = forms.CharField(widget=forms.Textarea)
 
-class UserForm(forms.Form):
-    username = forms.CharField(max_length=40)
-    password = forms.CharField(widget=forms.PasswordInput)
+# class UserForm(forms.Form):
+#     username = forms.CharField(max_length=40)
+#     password = forms.CharField(widget=forms.PasswordInput)
     
-    class Meta():
-        model = CustomUserModel
-        fields = ['bio']
+#     class Meta():
+#         model = CustomUserModel
+#         fields = ['bio']

@@ -9,8 +9,9 @@ class CustomUserModel(AbstractUser):
         return self.username
 
 class Ticket(models.Model):
-    # Got help from Sohail Aslam in study hall here, as well as the Django documentation.
+    # Got help from Sohail Aslam in study hall here, Peter Marsh, and also the Django documentation.
     # https://docs.djangoproject.com/en/3.0/ref/models/fields/#choices
+    # First item in tuple is saved in the database, second item is displayed in the front end.
     TICKET_CHOICES = [
         ('New', 'New'),
         ('In Progress', 'In Progress'),
@@ -29,10 +30,12 @@ class Ticket(models.Model):
     user_assigned_ticket = models.ForeignKey(CustomUserModel, 
                                              on_delete=models.CASCADE, 
                                              null=True,
+                                             blank=True,
                                              related_name='user_assigned')
     user_completed_ticket = models.ForeignKey(CustomUserModel, 
                                               on_delete=models.CASCADE,
                                               null=True,
+                                              blank=True,
                                               related_name='user_completed')
 
     def __str__(self):

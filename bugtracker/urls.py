@@ -22,7 +22,7 @@ urlpatterns = [
     path('ticket/<int:ticket_id>/edit/', views.ticket_edit_view),
     path('ticket/<int:ticket_id>', views.ticket_view, name="ticket_view"),
     path('newticket/', views.create_ticket_view, name="create_ticket_view"),
-    path('username/<int:user_id>/edit/', views.user_edit_view),
+    # path('username/<int:user_id>/edit/', views.user_edit_view),
     path('username/<int:user_id>', views.user_view, name="user_view"),
     # path('newuser/', views.create_user_view, name="create_user_view"),
     path('login/', views.login_view, name="login"),

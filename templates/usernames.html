@@ -1,13 +1,26 @@
-{% if not users %}
+{% if not usernames %}
     <h1>The user you're looking for isn't here.</h1>
 {% else %}
     <h1>{{ usernames.username }}</h1>
     <p>{{ usernames.bio }}</p>
     <ul>
-    {% for ticket in tickets %}
-        <li>
-            <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
-        </li>
-    {% endfor %}
+        <h1>Filed Tickets</h1>
+        {% for ticket in filedtickets %}
+            <li>
+                <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
+            </li>
+        {% endfor %}
+        <h1>Assigned Tickets</h1>
+        {% for ticket in assignedtickets %}
+            <li>
+                <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
+            </li>
+        {% endfor %}
+        <h1>Completed Tickets</h1>
+        {% for ticket in completedtickets %}
+            <li>
+                <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
+            </li>
+        {% endfor %}
     </ul>
 {% endif %}

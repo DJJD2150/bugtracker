@@ -3,9 +3,9 @@
 {% else %}
     <h2>{{ tickets.title }}</h2>
     <p>{{ tickets.time_and_date_filed }}</p>
-    <p>{{ ticket.ticket_status }}</p>
-    <p><a href="/username/{{ tickets.username.id }}">{{ tickets.username.username }}</a></p>
+    <p>{{ tickets.ticket_status }}</p>
     <p>{{ tickets.description }}</p>
+    <p><a href="/username/{{ tickets.user_filed_ticket.id }}">{{ tickets.user_filed_ticket }}</a></p>
     <p>{{ tickets.user_filed_ticket }}</p>
     <p>{{ tickets.user_assigned_ticket }}</p>
     <p>{{ tickets.user_completed_ticket }}</p>

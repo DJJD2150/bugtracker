@@ -5,15 +5,33 @@
         <a href="/logout/"><button>Logout</button></a>
     </p>
     <ul>
-    {% for ticket in index %}
-        <li>
-            <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
-        </li>
-    {% endfor %}
+        <h1>New Tickets</h1>
+        {% for ticket in new_tickets %}
+            <li>
+                <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
+            </li>
+        {% endfor %}
+        <h1>Incomplete Tickets</h1>
+        {% for ticket in in_progress_tickets %}
+            <li>
+                <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
+            </li>
+        {% endfor %}
+        <h1>Completed Tickets</h1>
+        {% for ticket in completed_tickets %}
+            <li>
+                <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
+            </li>
+        {% endfor %}
+        <h1>Invalid Tickets</h1>
+        {% for ticket in invalid_tickets %}
+            <li>
+                <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
+            </li>
+        {% endfor %}
     </ul>
-    {{ tickets }}
+
     <a href="/newticket/">Create New Ticket</a>
-    <!-- <a href="/newuser/">Create New User</a>-->
 {% else %}
     <h2>You must log on to access Bugtracker.</h2>
     <p>
