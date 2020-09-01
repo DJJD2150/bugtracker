@@ -4,19 +4,19 @@
     <h1>{{ usernames.username }}</h1>
     <p>{{ usernames.bio }}</p>
     <ul>
-        <h1>Filed Tickets</h1>
+        <h2>Filed Tickets</h2>
         {% for ticket in filedtickets %}
             <li>
                 <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
             </li>
         {% endfor %}
-        <h1>Assigned Tickets</h1>
+        <h2>Assigned Tickets</h2>
         {% for ticket in assignedtickets %}
             <li>
                 <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
             </li>
         {% endfor %}
-        <h1>Completed Tickets</h1>
+        <h2>Completed Tickets</h2>
         {% for ticket in completedtickets %}
             <li>
                 <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>

@@ -122,6 +122,30 @@ def user_view(request, user_id):
                                             "completedtickets": all_users_completed_tickets,
                                             "post": all_users})
 
+def completed_view(request, completed_id):
+    post = Ticket.objects.get(id=completed_id)
+    post.ticket_status = 'Done'
+    post.user_completed_ticket = post.user_assigned_ticket
+    post.user_assigned_ticket = None
+    post.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def incomplete_view(request, incomplete_id):
+    post = Ticket.objects.get(id=incomplete_id)
+    post.ticket_status = 'In Progress'
+    post.user_assigned_ticket = request.user
+    post.user_completed_ticket = None
+    post.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def invalid_view(request, invalid_id):
+    post = Ticket.objects.get(id=invalid_id)
+    post.ticket_status = 'Invalid'
+    post.user_assigned_ticket = None
+    post.user_completed_ticket = None
+    post.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 # """localhost:8000/username/3/edit"""
 # # @login_required
 # # def user_edit_view(request, user_id):

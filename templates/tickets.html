@@ -5,8 +5,17 @@
     <p>{{ tickets.time_and_date_filed }}</p>
     <p>{{ tickets.ticket_status }}</p>
     <p>{{ tickets.description }}</p>
-    <p><a href="/username/{{ tickets.user_filed_ticket.id }}">{{ tickets.user_filed_ticket }}</a></p>
+    <p><a href="/username/{{ tickets.user_filed_ticket.id }}/">{{ tickets.user_filed_ticket }}</a></p>
     <p>{{ tickets.user_filed_ticket }}</p>
     <p>{{ tickets.user_assigned_ticket }}</p>
     <p>{{ tickets.user_completed_ticket }}</p>
+    <!--{% if tickets.ticket_status != 'In Progress' %}-->
+        <p><a href="/incomplete/{{ tickets.id }}/">In Progress</a></p>
+    <!--{% endif %}-->
+    <!--{% if tickets.ticket_status != 'Done' %}-->
+        <p><a href="/completed/{{ tickets.id }}/">Done</a></p>
+    <!--{% endif %}-->
+    <!-- {% if tickets.ticket_status != 'Invalid' %}-->
+        <p><a href="/invalid/{{ tickets.id }}/">Invalid</a></p>
+    <!--{% endif %}-->
 {% endif %}

@@ -5,25 +5,25 @@
         <a href="/logout/"><button>Logout</button></a>
     </p>
     <ul>
-        <h1>New Tickets</h1>
+        <h2>New Tickets</h2>
         {% for ticket in new_tickets %}
             <li>
                 <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
             </li>
         {% endfor %}
-        <h1>Incomplete Tickets</h1>
+        <h2>Incomplete Tickets</h2>
         {% for ticket in in_progress_tickets %}
             <li>
                 <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
             </li>
         {% endfor %}
-        <h1>Completed Tickets</h1>
+        <h2>Completed Tickets</h2>
         {% for ticket in completed_tickets %}
             <li>
                 <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
             </li>
         {% endfor %}
-        <h1>Invalid Tickets</h1>
+        <h2>Invalid Tickets</h2>
         {% for ticket in invalid_tickets %}
             <li>
                 <a href="/ticket/{{ ticket.id }}">{{ ticket.title }}</a>
